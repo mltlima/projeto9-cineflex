@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+}
+
+header {
+    height: 67px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #C3CFD9;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 34px;
+    color: #E8833A;
+}
