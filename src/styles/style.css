@@ -165,3 +165,7 @@ form button {
     display: flex;
     justify-content: center;
 }
+
+.sucess {
+    margin-top: 80px;
+}

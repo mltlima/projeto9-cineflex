@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate  } from "react-router-dom";
 import axios from "axios";
 
 export default function Seats() {
@@ -7,6 +7,8 @@ export default function Seats() {
     const [session, setSession] = useState({});
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    const [seatsSelected, setSeatsSelected] = useState([]);
+    const navigate = useNavigate();
     
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`)
@@ -18,12 +20,33 @@ export default function Seats() {
     
     function submitData(event) {
         event.preventDefault();
+
+        let seatsData =
+        {
+            ids: seatsSelected,
+            name: name,
+            cpf: cpf
+        }
+
+        const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", (seatsData));            
+            promise.then(() => {
+                console.log("sucesso");
+                //<Link to={"/sucess/"}/>
+                /*
+                <Link to={{ pathname: '/sucess', state: {title : session.movie.title, weekday : session.day.weekday, 
+                    date : session.day.date, tickets : seatsSelected, name : name, cpf : cpf } }}>
+                </Link>*/
+                navigate('/sucess/', {state : {title : session.movie.title, weekday : session.day.weekday, 
+                    date : session.day.date, tickets : seatsSelected, name : name, cpf : cpf }})
+            }).catch((error) => console.log(error));
+
     }
     return (
         <section className="center">   
             <div className="title">Selecione o(s) assento(s)</div>
             <ul className="seats">
-                {session.seats?.map((seat) => <Seat id={seat.id} isAvailable={seat.isAvailable}/>)}        
+                {session.seats?.map((seat) => <Seat id={seat.id} isAvailable={seat.isAvailable} 
+                seatsSelected={seatsSelected} setSeatsSelected={setSeatsSelected}/>)}        
             </ul>
             <ul className="symbols">
                 <div><li className="selected"></li> Selecionado</div>
@@ -45,12 +68,23 @@ export default function Seats() {
 }
 
 function Seat(props) {
-    const {isAvailable, id} = props;
+    const {isAvailable, id, setSeatsSelected, seatsSelected} = props;
     const [selected, setSelected] = useState(false)
+
+    function selectSeat() {
+        if (selected) {
+            setSeatsSelected(seatsSelected.filter(item => item !== id));
+            setSelected(false);
+        } else {
+            setSelected(true)
+            setSeatsSelected([...seatsSelected, id])
+        }
+    }
 
     return (
     
-            <li className={selected ? "selected" : isAvailable ? null : "unavailable"} onClick={() => isAvailable ? setSelected(!selected) : null}>
+            <li className={selected ? "selected" : isAvailable ? null : "unavailable"} 
+            onClick={() => isAvailable ? selectSeat() : null}>
                 <div>{("0" + `${id}`).slice(-2)}</div>
             </li>
 
