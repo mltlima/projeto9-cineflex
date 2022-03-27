@@ -25,6 +25,24 @@ header {
     color: #E8833A;
 }
 
+button {
+    height: 43px;
+    background: #E8833A;
+    border: none;
+    margin: 10px 20px 10px 0px;
+    padding: 0px 20px 0px 20px;
+    border-radius: 3px;
+}
+
+h1 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    color: #293845;
+    margin: 20px 0px 20px 0px ;
+}
+
 .center {
     display: flex;
     flex-direction: column;
@@ -47,12 +65,12 @@ header {
 .movies {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
 }
 
 .movies li{
     height: 209px;
     width: 145px;
+    margin: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,4 +82,86 @@ header {
 .movies img {
     height: 93%;
     width: 93%;
+}
+
+.seats, .symbols {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.seats li, .symbols li {
+    width: 26px;
+    height: 26px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #C3CFD9;
+    border: 1px solid #808F9D;
+    border-radius: 12px;
+}
+
+.seats li div, .symbols li div {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+}
+
+.seats .selected, .symbols .selected {
+    background: #8DD7CF !important;
+    border: 1px solid #45BDB0 !important;
+}
+
+.seats .unavailable, .symbols .unavailable {
+    background: #FBE192 !important;
+    border: 1px solid #F7C52B !important;
+}
+
+.symbols {
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    color: #293845;
+}
+
+form input {
+    width: 100%;
+    height: 51px;
+    border: 1px solid #D5D5D5;
+    box-sizing: border-box;
+    border-radius: 3px;
+
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+
+    color: #AFAFAF;
+}
+
+form button {
+    width: fit-content;
+}
+
+.submit-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

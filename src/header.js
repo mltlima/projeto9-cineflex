@@ -1,7 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function Header() {
     return (
-        <header>
-            CINEFLIX
-        </header>
+        <Link to="/">
+            <header>
+                CINEFLIX
+            </header>
+        </Link>
     )
 }
