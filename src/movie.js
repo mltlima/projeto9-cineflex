@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Footer from "./footer";
 
 export default function Movie() {
     const {idMovie} = useParams();
@@ -10,19 +11,20 @@ export default function Movie() {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/movies/${idMovie}/showtimes`)
 
         promise.then((answer) => {
-            //console.log(answer.data)
             setMovie(answer.data)
         }).catch((error) => console.log(error))
     }, [])
 
     return (
-        
+        <>
         <section className="center">   
             <div className="title">Selecione o horário</div>
             <ul className="movies-sections">
                 {movie.days?.map((day) => <Day id={day.id} weekday={day.weekday} date={day.date} showtimes={day.showtimes}/>)}
             </ul>
         </section>
+        <Footer title={movie.title} posterUrl={movie.posterURL}/>
+        </>
         
     )
 }

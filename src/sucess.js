@@ -9,18 +9,18 @@ export default function Sucess() {
                 <div className="title-sucess">Pedido feito <br /> com sucesso!</div>
                 <div className="all-tickets">
                     <div className="confirmed">
-                        <p>Filme e sessão</p>
+                        <h2>Filme e sessão</h2>
                         <div className='data-sucess'>
                             <p>{location.state.title}</p>
                             <p>{location.state.weekday} - {location.state.date}</p>
                         </div>
                     </div>
                     <div className="confirmed">
-                        <p>Ingressos</p>
+                        <h2>Ingressos</h2>
                         {location.state.tickets.map((ticket) => <Ticket ticket={ticket}/>)}
                     </div>
                     <div className="confirmed">
-                        <p>Comprador</p>
+                        <h2>Comprador</h2>
                         <div className='data-sucess'>
                             <p>Nome: {location.state.name}</p>
                             <p>CPF: {location.state.cpf}</p>

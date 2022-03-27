@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useParams, useNavigate  } from "react-router-dom";
 import axios from "axios";
+import Footer from "./footer";
 
 export default function Seats() {
     const {idSession} = useParams();
@@ -9,12 +10,17 @@ export default function Seats() {
     const [cpf, setCpf] = useState("");
     const [seatsSelected, setSeatsSelected] = useState([]);
     const navigate = useNavigate();
+    let title, weekday, date, posterUrl;
     
     useEffect(() => {
         const promise = axios.get(`https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSession}/seats`)
 
         promise.then((answer) => {
             setSession(answer.data)
+            title = session.movie.title;
+            weekday = session.day.weekday;
+            date = session.day.date;
+            posterUrl = session.movie.posterURL;
         }).catch((error) => console.log(error))
     }, [])
     
@@ -30,18 +36,13 @@ export default function Seats() {
 
         const promise = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many", (seatsData));            
             promise.then(() => {
-                console.log("sucesso");
-                //<Link to={"/sucess/"}/>
-                /*
-                <Link to={{ pathname: '/sucess', state: {title : session.movie.title, weekday : session.day.weekday, 
-                    date : session.day.date, tickets : seatsSelected, name : name, cpf : cpf } }}>
-                </Link>*/
                 navigate('/sucess/', {state : {title : session.movie.title, weekday : session.day.weekday, 
                     date : session.day.date, tickets : seatsSelected, name : name, cpf : cpf }})
             }).catch((error) => console.log(error));
 
     }
     return (
+        <>
         <section className="center">   
             <div className="title">Selecione o(s) assento(s)</div>
             <ul className="seats">
@@ -64,6 +65,8 @@ export default function Seats() {
                 </div>
             </form>
         </section>
+        {/*<Footer title={session.movie.title} weekday={session.day.weekday} date={session.day.date} posterUrl={session.movie.posterURL}/>*/}
+        </>
     )
 }
 
@@ -81,10 +84,11 @@ function Seat(props) {
         }
     }
 
+
     return (
     
             <li className={selected ? "selected" : isAvailable ? null : "unavailable"} 
-            onClick={() => isAvailable ? selectSeat() : null}>
+            onClick={() => isAvailable ? selectSeat() : alert("Esse assento não está disponível")}>
                 <div>{("0" + `${id}`).slice(-2)}</div>
             </li>
 
