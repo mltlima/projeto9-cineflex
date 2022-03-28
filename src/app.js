@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react';
 import Header from './header';
 import Movies from './movies';
 import Movie from './movie';

@@ -212,6 +212,7 @@ footer {
     right: 0;
     height: 117px;
     display: flex;
+    align-items: center;
     background-color: #C3CFD9;
 }
 
@@ -225,4 +226,13 @@ footer {
 footer img {
     width: 100%;
     padding: 8px;
+}
+
+.title-footer {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    color: #293845;
+    margin-left: 22px;
 }

@@ -5,8 +5,8 @@ export default function Footer(props) {
         <footer>
             <div className="footer-img"><img src={posterUrl}/></div>
             <div className="info-footer">
-                <div className="title">{title}</div>
-                <div className="title">{weekday} - {date}</div>
+                <div className="title-footer">{title}</div>
+                <div className="title-footer">{weekday} - {date}</div>
             </div>
         </footer>
     )

@@ -2,8 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Sucess() {
     const location = useLocation();
-    //const {title, weekday, date, tickets, name, cpf} = location;
-    console.log(location.state.tickets)
+
     return (
         <main className='sucess'>
                 <div className="title-sucess">Pedido feito <br /> com sucesso!</div>
