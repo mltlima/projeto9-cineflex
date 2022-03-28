@@ -32,18 +32,18 @@ export default function Movie() {
 function Day(props) {
     const {id, weekday, date, showtimes} = props;
     return (
-        <li key={id}>
+        <li key={id + showtimes.id}>
             <h1>{weekday} - {date}</h1>
-            {showtimes.map((showtime) => <ButtonShowtimes time={showtime.name} id={id} showtimeId={showtime.id}/>)}
+            {showtimes.map((showtime) => <ButtonShowtimes time={showtime.name} showtimeId={showtime.id}/>)}
         </li>
     )
 }
 
 function ButtonShowtimes(props) {
-    const {time, showtimeId, id} = props;
+    const {time, showtimeId} = props;
     
     return (
-        <Link to={`/seats/${showtimeId}`}>
+        <Link to={`/seats/${showtimeId}`} key={showtimeId}>
             <button>{time}</button>
         </Link>
     )

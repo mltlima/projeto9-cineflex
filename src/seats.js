@@ -34,8 +34,8 @@ export default function Seats() {
                 navigate('/sucess/', {state : {title : session.movie.title, weekday : session.day.weekday, 
                     date : session.day.date, tickets : seatsSelected, name : name, cpf : cpf }})
             }).catch((error) => console.log(error));
-
     }
+
     return (
         <>
         <section className="center">   
@@ -81,12 +81,9 @@ function Seat(props) {
 
 
     return (
-    
             <li className={selected ? "selected" : isAvailable ? null : "unavailable"} 
-            onClick={() => isAvailable ? selectSeat() : alert("Esse assento não está disponível")}>
+            onClick={() => isAvailable ? selectSeat() : alert("Esse assento não está disponível")} key={id}>
                 <div>{("0" + `${id}`).slice(-2)}</div>
-            </li>
-
-                
+            </li>    
     )
 }
